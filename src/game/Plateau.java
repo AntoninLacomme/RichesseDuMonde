@@ -64,7 +64,8 @@ public class Plateau {
 	}
 	
 	private void buildPlateau () {
-		this.initializeListPlaquette();
+		this.initializeListPlaquette ();
+		this.initializeListActivities ();
 		this.actualNbJoker = 9;
 		this.initializeListActivities();
 		
@@ -191,7 +192,7 @@ public class Plateau {
 	}
 	
 	private void initializeListActivities () {
-		ArrayList<Actualite> allActualite = Actualite.getAllActualite ();
+		this.listActualite = Actualite.getAllActualite ();
 	}
 	
 	private Ressource getPlaquette () {		
@@ -209,5 +210,9 @@ public class Plateau {
 			all += "Case " + acc + " ->\n" + c.toString() + "\n\n";
 		}
 		return all;
+	}
+
+	public ArrayList<Actualite> getAllActualite() {
+		return this.listActualite;
 	}
 }

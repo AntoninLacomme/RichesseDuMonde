@@ -29,7 +29,7 @@ public class Actualite {
 			}		
 		}));
 		
-		description = "A la suite d'encombrements sur l'autoroute, vous étiez en retard pour prendre votre avion.\n Dans votre précipitation, vous avez égaré votre serviette contenant 3 millions. Payez à la banque.";
+		description = "A la suite d'encombrements sur l'autoroute, vous étiez en retard pour prendre votre avion.\nDans votre précipitation, vous avez égaré votre serviette contenant 3 millions. Payez à la banque.";
 		listActu.add(new Actualite (description, new EffectActualite () {
 			@Override
 			public void activateEffect(PlayerServer playerAppelant, Game gameEnCours) {
@@ -167,5 +167,9 @@ public class Actualite {
 
 	public void activateEffect(PlayerServer playerAppelant, Game gameEnCours) {
 		effect.activateEffect(playerAppelant, gameEnCours);
+	}
+
+	public String getDescription() {
+		return this.description;
 	}
 }

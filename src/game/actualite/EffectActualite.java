@@ -75,7 +75,7 @@ abstract public class EffectActualite implements ActivationEffect {
 	public void allOthersPlayersPay (PlayerServer playerAppelant, Game gameEnCours, int money) {
 		for (PlayerServer p: gameEnCours.getAllPlayers ()) {
 			if (!p.equals(playerAppelant)) {
-				gameEnCours.payPlayerFromPlayer (playerAppelant, p, money);
+				gameEnCours.getBanque().payPlayerFromPlayer (playerAppelant, p, money);
 			}
 		}
 	}

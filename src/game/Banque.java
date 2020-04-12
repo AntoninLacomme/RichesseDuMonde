@@ -19,6 +19,11 @@ public class Banque implements ReserveArgent {
 		player.payMoney(money);
 		this.addMoney(money);
 	}
+	
+	public void payPlayerFromPlayer(PlayerServer playerReceveur, PlayerServer playerPayeur, int money) {
+		playerPayeur.payMoney(money);
+		playerReceveur.addMoney(money);
+	}
 
 
 
