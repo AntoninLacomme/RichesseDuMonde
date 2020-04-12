@@ -3,16 +3,21 @@ package server;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.concurrent.Semaphore;
 
 import game.Game;
 
+import java.io.BufferedInputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.InetAddress;
 
 public class Server {
 	private String host = "127.0.0.1";
 	private ServerSocket server = null;
 	private boolean isRunning = true;
+	
+	private Game myGame;
 	
 	public Server (int port) {
 		try {
@@ -25,7 +30,8 @@ public class Server {
 	        e.printStackTrace();
 	    }
 		
-		Game myGame = new Game ();
+		Semaphore max = new Semaphore (1);
+		this.myGame = new Game (max);
 	}
 	
 	
@@ -36,7 +42,7 @@ public class Server {
 					        while(isRunning == true){
 					        	try {
 					        		Socket client = server.accept();                  
-					        		Thread t = new Thread(new ClientProcessor (client));
+					        		Thread t = new Thread(new ClientProcessor (client, myGame));
 					        		t.start();
 					        	} 
 				           		catch (IOException e) {

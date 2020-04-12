@@ -8,15 +8,20 @@ import java.net.InetSocketAddress;
 import java.net.SocketException;
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.Random;
+
+import game.Game;
 
 public class ClientProcessor implements Runnable {
 	
 	private Socket client;
 	private PrintWriter writer = null;
 	private BufferedInputStream reader = null;
+	private Game myGame;
 
-	public ClientProcessor(Socket client) {
+	public ClientProcessor(Socket client, Game myGame) {
 		this.client = client;
+		this.myGame = myGame;
 	}
 
 	@Override
@@ -51,6 +56,7 @@ public class ClientProcessor implements Runnable {
 	            switch(response.toUpperCase()){
 	            	case "CONNECTION":
 	            		toSend = "true";
+	            		myGame.linkNewPlayer(this, "player" + new Random().nextInt(256));
 	            		break;
 	            	default : 
 	            		toSend = "Commande inconnu !";                     
@@ -75,7 +81,10 @@ public class ClientProcessor implements Runnable {
 	        catch (IOException e) {
 	            e.printStackTrace();
 	            System.out.println(e.toString());
-	        }
+	        } 
+	        catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 	    
 	    }
 	}
@@ -94,5 +103,57 @@ public class ClientProcessor implements Runnable {
 		}
 		response = new String(b, 0, stream);
 		return response;
+	}
+	
+	private String read(BufferedInputStream reader) throws IOException {
+		byte[] byteValues = new byte[1024];
+		reader.read(byteValues);
+		return new String(byteValues);
+    }
+	
+	synchronized private void sendEventToClient (Thread thradToSleeping, String event, CallBack functionCallback) {
+		Thread send = new Thread (new Runnable () {
+			@Override
+			public void run() {
+				try {
+					PrintWriter writer = new PrintWriter(client.getOutputStream(), true);
+					BufferedInputStream reader = new BufferedInputStream(client.getInputStream());
+					
+					writer.write(event);
+					writer.flush ();
+
+					String response = read(reader);
+					functionCallback.execute(response);
+					
+					synchronized (thradToSleeping) { thradToSleeping.notify(); }
+				} 
+				catch (IOException e) {
+					e.printStackTrace();
+				}	
+			}
+		});
+		send.start();
+
+		synchronized (thradToSleeping) {
+			try {
+				thradToSleeping.wait();
+			} 
+			catch (InterruptedException e1) {
+				e1.printStackTrace();
+			}
+		}
+	}
+
+	public String askName(Thread threadToSleeping) {
+		String[] name = new String[1];
+		System.out.println("Demande de son nom au client");
+		this.sendEventToClient(threadToSleeping, "GET_NAME", new CallBack () {
+			@Override
+			public void execute(String response) { 
+				name[0] = response;
+				System.out.println("Nom du client reçu ! Il s'appelle " + response);
+			}
+		});
+		return name[0];
 	}
 }
