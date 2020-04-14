@@ -26,66 +26,10 @@ public class Client {
 		
 
 		System.err.println("Lancement du traitement de la connexion server");
-
-		boolean closeConnexion = false;
-		PrintWriter writer;
-		BufferedInputStream reader;
 		
-
-	    while(true){
-	        try {
-	        	//Ici, nous n'utilisons pas les mêmes objets que précédemment
-	        	//Je vous expliquerai pourquoi ensuite
-	        	writer = new PrintWriter(this.connexion.getOutputStream());
-	            reader = new BufferedInputStream(this.connexion.getInputStream());
-		            
-	            //On attend la demande du client            
-	            String response = this.read(reader);
-
-	            InetSocketAddress remote = (InetSocketAddress)this.connexion.getRemoteSocketAddress();
-	            
-	            //On affiche quelques infos, pour le débuggage
-	            String debug = "";
-	            debug = "Thread : " + Thread.currentThread().getName() + "\n";
-	            debug += "Demande de l'adresse : " + remote.getAddress().getHostAddress() +"\n";
-	            debug += " Sur le port : " + remote.getPort() + "\n";
-	            debug += "\t -> Commande reçue : " + response + "\n";
-	            System.err.println("\n" + debug);
-	            
-	            //On traite la demande du client en fonction de la commande envoyée
-	            String toSend = "";
-	            
-	            switch(response.toUpperCase()){
-	            	case "GET_NAME":
-	            		toSend = this.name;
-	            		break;
-	            	default : 
-	            		toSend = "Commande inconnu !";                     
-	            		break;
-	            }
-
-	            writer.write(toSend);
-	            writer.flush();
-	            
-	            if(closeConnexion){
-	            	System.err.println("COMMANDE CLOSE DETECTEE ! ");
-	            	writer = null;
-	            	reader = null;
-	            	this.connexion.close();
-	            }
-	
-	        } 
-	        catch(SocketException e){
-	        	System.err.println("LA CONNEXION A ETE INTERROMPUE ! ");
-	            break;
-	        } 
-	        catch (IOException e) {
-	            e.printStackTrace();
-	            System.out.println(e.toString());
-	        }
-		}
-	    
-	    
+		Thread waitingServer = new Thread (new ConnectionClient (connexion, this));
+		waitingServer.start();
+    
 		
 		this.sendEventToServer("CONNECTION", new CallBack () {
 			@Override

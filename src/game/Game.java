@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import game.actualite.Actualite;
 import server.ClientProcessor;
+import server.PlayerServer;
+
 import java.util.concurrent.Semaphore;
 
 public class Game {

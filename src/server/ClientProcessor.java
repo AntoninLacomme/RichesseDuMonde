@@ -119,6 +119,7 @@ public class ClientProcessor implements Runnable {
 					PrintWriter writer = new PrintWriter(client.getOutputStream(), true);
 					BufferedInputStream reader = new BufferedInputStream(client.getInputStream());
 					
+					System.out.println("Ici le serveur, j'ai essayé d'envoyer <" + event + "> au client");
 					writer.write(event);
 					writer.flush ();
 

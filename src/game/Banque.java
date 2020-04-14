@@ -1,5 +1,7 @@
 package game;
 
+import server.PlayerServer;
+
 public class Banque implements ReserveArgent {
 	
 	private int actualMoney;

@@ -3,8 +3,8 @@ package game.actualite;
 import java.util.ArrayList;
 
 import game.Game;
-import game.PlayerServer;
 import game.ressources.Ressource;
+import server.PlayerServer;
 
 public class Actualite {
 

@@ -1,10 +1,10 @@
-package game;
+package server;
 
 import java.util.ArrayList;
 
+import game.ReserveArgent;
 import game.ressources.Ressource;
 import game.ressources.TitreExploitation;
-import server.ClientProcessor;
 
 public class PlayerServer implements ReserveArgent {
 	private String name;
@@ -44,8 +44,7 @@ public class PlayerServer implements ReserveArgent {
 	}
 
 	public String getNameClient(Thread threadToSleeping) {
-		this.dialogClient.askName (threadToSleeping);
-		return "";
+		return this.dialogClient.askName (threadToSleeping);
 	}
 
 }

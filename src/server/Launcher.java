@@ -30,13 +30,13 @@ public class Launcher implements Runnable {
 		monServ.open();
 		
 		Thread client1 = new Thread (new Launcher ("127.0.0.1", 10101, "Joueur 1"));
-		Thread client2 = new Thread (new Launcher ("127.0.0.1", 10101, "Joueur 2"));
-		Thread client3 = new Thread (new Launcher ("127.0.0.1", 10101, "Joueur 3"));
-		Thread client4 = new Thread (new Launcher ("127.0.0.1", 10101, "Joueur 4"));
+		//Thread client2 = new Thread (new Launcher ("127.0.0.1", 10101, "Joueur 2"));
+		//Thread client3 = new Thread (new Launcher ("127.0.0.1", 10101, "Joueur 3"));
+		//Thread client4 = new Thread (new Launcher ("127.0.0.1", 10101, "Joueur 4"));
 		client1.start();
-		client2.start();
-		client3.start();
-		client4.start();
+		//client2.start();
+		//client3.start();
+		//client4.start();
 	}
 
 	@Override
