@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.awt.Color;
 
 public enum Region {
-	Afrique ("Afrique", new Color (165, 42, 42), new ArrayList<EnsembleEconomique> () {{
+	Afrique ("A", "Afrique", new Color (165, 42, 42), new ArrayList<EnsembleEconomique> () {{
 		add (EnsembleEconomique.AfriqueCentrale);
 		add (EnsembleEconomique.AfriqueGrandsLacs);
 		add (EnsembleEconomique.AfriqueNordEst);
@@ -12,7 +12,7 @@ public enum Region {
 		add (EnsembleEconomique.AfriqueSud);
 		add (EnsembleEconomique.Maghreb);
 	}}),
-	Amerique ("Amérique (sauf USA)", Color.RED, new ArrayList<EnsembleEconomique> () {{
+	Amerique ("B", "Amérique (sauf USA)", Color.RED, new ArrayList<EnsembleEconomique> () {{
 		add (EnsembleEconomique.Canada);
 		add (EnsembleEconomique.Bresil);
 		add (EnsembleEconomique.Mexique);
@@ -21,10 +21,10 @@ public enum Region {
 		add (EnsembleEconomique.Argentine);
 		add (EnsembleEconomique.Antilles);
 	}}),
-	USA ("USA", Color.ORANGE, new ArrayList<EnsembleEconomique> () {{
+	USA ("C", "USA", Color.ORANGE, new ArrayList<EnsembleEconomique> () {{
 		add (EnsembleEconomique.USA);
 	}}),
-	Europe ("Europe", Color.BLUE, new ArrayList<EnsembleEconomique> () {{
+	Europe ("D", "Europe", Color.BLUE, new ArrayList<EnsembleEconomique> () {{
 		add (EnsembleEconomique.Scandinavie);
 		add (EnsembleEconomique.Allemagne);
 		add (EnsembleEconomique.EuropeBalkanique);
@@ -33,7 +33,7 @@ public enum Region {
 		add (EnsembleEconomique.RoyaumeUni);
 		add (EnsembleEconomique.France);
 	}}),
-	Asie ("Asie", Color.YELLOW, new ArrayList<EnsembleEconomique> () {{
+	Asie ("E", "Asie", Color.YELLOW, new ArrayList<EnsembleEconomique> () {{
 		add (EnsembleEconomique.Chine);
 		add (EnsembleEconomique.PeninsuleIndochinoise);
 		add (EnsembleEconomique.PeninsuleIndienne);
@@ -41,18 +41,20 @@ public enum Region {
 		add (EnsembleEconomique.JaponAsie);
 		add (EnsembleEconomique.MoyenOrient);
 	}}),
-	Oceanie ("Oceanie", new Color (128, 0, 128), new ArrayList<EnsembleEconomique> () {{
+	Oceanie ("F", "Oceanie", new Color (128, 0, 128), new ArrayList<EnsembleEconomique> () {{
 		add (EnsembleEconomique.Oceanie);
 	}}),
-	Russie ("Russie (et C.E.I)", Color.GRAY, new ArrayList<EnsembleEconomique> () {{
+	Russie ("G", "Russie (et C.E.I)", Color.GRAY, new ArrayList<EnsembleEconomique> () {{
 		add (EnsembleEconomique.Russie);
 	}});
 	
+	private String id;
 	private String name;
 	private Color color;
 	private ArrayList<EnsembleEconomique> mesEnsemblesEco;
 	
-	Region (String name, Color color, ArrayList<EnsembleEconomique> listEnsembleEco) {
+	Region (String id, String name, Color color, ArrayList<EnsembleEconomique> listEnsembleEco) {
+		this.id = id;
 		this.name = name;
 		this.color = color;
 		this.mesEnsemblesEco = listEnsembleEco;		
@@ -61,4 +63,6 @@ public enum Region {
 	public ArrayList<EnsembleEconomique> getAllEnsembleEconomique() {
 		return this.mesEnsemblesEco;
 	}
+	
+	public String getID () { return this.id; }
 }

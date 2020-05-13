@@ -11,47 +11,6 @@ import game.ressources.Ressource;
 
 public class Plateau {
 	
-	private class Case {
-		public String name;
-		public ArrayList<EnsembleEconomique> ensEco;
-		public Ressource ressource;
-		
-		public Case (EnsembleEconomique ensEco, Ressource ressource) {
-			this.name = ensEco.name();
-			this.ensEco = new ArrayList<EnsembleEconomique> () {{ add(ensEco); }};
-			this.ressource = ressource;
-		}
-		
-		public Case (Region region, Ressource ressource) {
-			this.name = "Choix " + region.name();
-			this.ensEco = region.getAllEnsembleEconomique ();
-			this.ressource = ressource;
-		}
-		
-		public Case (String enonce) {
-			this.name = enonce;
-			this.ressource = null;
-		}
-		
-		public Case (String enonce, Ressource ressource) {
-			this.name = enonce;
-			this.ressource = ressource;
-		}
-		
-		public String toString () {
-			String txt = "\tNom de case : " + this.name;
-			
-			txt += "\n\tRessource : ";
-			if (ressource != null) {
-				txt += this.ressource.getName();
-			}
-			else {
-				txt += "null";
-			}
-			return txt;
-		}
-	}
-	
 	// tableau de 64 cases
 	private Case[] monPlateau;
 	private ArrayList<Ressource> listPlaquette;
@@ -200,6 +159,10 @@ public class Plateau {
 		Ressource r = this.listPlaquette.get(index);
 		this.listPlaquette.remove(index);
 		return r;
+	}
+	
+	public Case[] getAllCases () {
+		return this.monPlateau;
 	}
 	
 	public String toString () {

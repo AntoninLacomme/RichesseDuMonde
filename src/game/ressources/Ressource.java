@@ -3,35 +3,37 @@ package game.ressources;
 import game.countries.Country;
 
 public enum Ressource {
-	Petrole ("Pétrole", 12),
-	Acier ("Acier", 11),
-	Fer ("Fer", 10),
-	Cuivre ("Cuivre", 9),
-	Cobalt ("Cobalt", 6),
-	GazNaturel ("Gaz Naturel", 8),
-	Argent ("Argent", 7),
-	ConstructionAutomobile ("Construction Automobile", 8),
-	ConstructionNavale ("Construction Navale", 7),
-	Aluminium ("Aluminum", 9),
-	Plomb ("Plomb", 6),
-	Uranium ("Uranium", 8),
-	Houille ("Houille", 11),
-	CotonBrut ("Coton Brut", 5),
-	LaineBrute ("Laine Brute", 5),
-	Cafe ("Café", 4),
-	Or ("Or", 10),
-	Sucre ("Sucre", 9),
-	Riz ("Riz", 7),
-	Ble ("Blé", 10),
-	The ("Thé", 5),
-	Cacao ("Cacao", 4),
-	CaoutchoucNaturel ("Caoutchouc Naturel", 4),
-	Nickel ("Nickel", 6);
+	Petrole (0, "Pétrole", 12),
+	Acier (1, "Acier", 11),
+	Fer (2, "Fer", 10),
+	Cuivre (3, "Cuivre", 9),
+	Cobalt (4, "Cobalt", 6),
+	GazNaturel (5, "Gaz Naturel", 8),
+	Argent (6, "Argent", 7),
+	ConstructionAutomobile (7, "Construction Automobile", 8),
+	ConstructionNavale (8, "Construction Navale", 7),
+	Aluminium (9, "Aluminum", 9),
+	Plomb (10, "Plomb", 6),
+	Uranium (11, "Uranium", 8),
+	Houille (12, "Houille", 11),
+	CotonBrut (13, "Coton Brut", 5),
+	LaineBrute (14, "Laine Brute", 5),
+	Cafe (15, "Café", 4),
+	Or (16, "Or", 10),
+	Sucre (17, "Sucre", 9),
+	Riz (18, "Riz", 7),
+	Ble (19, "Blé", 10),
+	The (20, "Thé", 5),
+	Cacao (21, "Cacao", 4),
+	CaoutchoucNaturel (22, "Caoutchouc Naturel", 4),
+	Nickel (23, "Nickel", 6);
 	
+	int idRessource;
 	private String nameRessource;
 	private int coeffRessource;
 	
-	Ressource (String name, int coefficient) {
+	Ressource (int id, String name, int coefficient) {
+		this.idRessource = id;
 		this.nameRessource = name;
 		this.coeffRessource = coefficient;
 	}
@@ -45,12 +47,23 @@ public enum Ressource {
 		return 0;
 	}
 	
+	public int getID () { return this.idRessource; }
+	
 	public int getCoeff () { return this.coeffRessource; }
 	
 	public String getName () { return this.nameRessource; }
 	
 	static public Ressource[] getAllRessources () {
 		return Ressource.values();
+	}
+	
+	static public Ressource getRessourceByID (int id) {
+		for (Ressource r : Ressource.values()) {
+			if (r.getID () == id) {
+				return r;
+			}
+		}
+		return null;
 	}
 
 	public boolean isEqual(Ressource ressource) {

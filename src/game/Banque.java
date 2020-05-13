@@ -1,6 +1,6 @@
 package game;
 
-import server.PlayerServer;
+import server.Player;
 
 public class Banque implements ReserveArgent {
 	
@@ -12,17 +12,17 @@ public class Banque implements ReserveArgent {
 	
 	
 
-	public void payToPlayer(PlayerServer player, int money) {
+	public void payToPlayer(Player player, int money) {
 		player.addMoney (money);
 		this.payMoney (money);
 	}
 	
-	public void playerPayToBank(PlayerServer player, int money) {
+	public void playerPayToBank(Player player, int money) {
 		player.payMoney(money);
 		this.addMoney(money);
 	}
 	
-	public void payPlayerFromPlayer(PlayerServer playerReceveur, PlayerServer playerPayeur, int money) {
+	public void payPlayerFromPlayer(Player playerReceveur, Player playerPayeur, int money) {
 		playerPayeur.payMoney(money);
 		playerReceveur.addMoney(money);
 	}

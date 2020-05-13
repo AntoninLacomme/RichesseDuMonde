@@ -1,8 +1,8 @@
 package game.actualite;
 
 import game.Game;
-import server.PlayerServer;
+import server.Player;
 
 public interface ActivationEffect {
-	public void activateEffect (PlayerServer playerAppelant, Game gameEnCours);
+	public void activateEffect (Player playerAppelant, Game gameEnCours);
 }

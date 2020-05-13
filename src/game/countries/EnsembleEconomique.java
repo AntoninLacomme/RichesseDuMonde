@@ -4,125 +4,128 @@ import java.util.ArrayList;
 
 public enum EnsembleEconomique {
 
-	Russie ("Russie", new ArrayList<Country> () {{
+	Russie (1, "Russie", new ArrayList<Country> () {{
 		add (Country.Russie);
 	}}),
-	Oceanie ("Océanie", new ArrayList<Country> () {{
+	Oceanie (2, "Océanie", new ArrayList<Country> () {{
 		add (Country.Australie);
 		add (Country.FidjiNouvelleGuinee);
 		add (Country.NouvelleZelande);
 	}}),
-	AfriqueOccidentale ("Afrique Occidentale", new ArrayList<Country> () {{
+	AfriqueOccidentale (3, "Afrique Occidentale", new ArrayList<Country> () {{
 		add (Country.Niger);
 		add (Country.Nigeria);
 		add (Country.Cameroun);
 		add (Country.Ghana);
 		add (Country.CoteIvoire);
 	}}),
-	AfriqueSud ("Afrique du Sud", new ArrayList<Country> () {{
+	AfriqueSud (4, "Afrique du Sud", new ArrayList<Country> () {{
 		add (Country.AfriqueSud);
 		add (Country.Namibie);
 		add (Country.UnionSudAfriquaine);
 	}}),
-	AfriqueGrandsLacs ("Afrique des Grands Lacs", new ArrayList<Country> () {{
+	AfriqueGrandsLacs (5, "Afrique des Grands Lacs", new ArrayList<Country> () {{
 		add (Country.Zambie);
 		add (Country.Kenya);
 	}}),
-	AfriqueNordEst ("Afrique du Nord-Est", new ArrayList<Country> () {{
+	AfriqueNordEst (6, "Afrique du Nord-Est", new ArrayList<Country> () {{
 		add (Country.Ethiopie);
 	}}),
-	AfriqueCentrale ("Afrique Centrale", new ArrayList<Country> () {{
+	AfriqueCentrale (7, "Afrique Centrale", new ArrayList<Country> () {{
 		add (Country.RDCongo);
 	}}),
-	Scandinavie ("Scandinavie", new ArrayList<Country> () {{
+	Scandinavie (8, "Scandinavie", new ArrayList<Country> () {{
 		add (Country.Danemark);
 		add (Country.Norvege);
 		add (Country.Finlande);
 	}}),
-	Allemagne ("Allemagne", new ArrayList<Country> () {{
+	Allemagne (9, "Allemagne", new ArrayList<Country> () {{
 		add (Country.Allemagne);
 	}}),
-	EuropeDanubienne ("Europe Danubienne", new ArrayList<Country> () {{
+	EuropeDanubienne (10, "Europe Danubienne", new ArrayList<Country> () {{
 		add (Country.Yougoslavie);
 		add (Country.Turquie);
 	}}),
-	EuropeBalkanique ("Europe Balkanique", new ArrayList<Country> () {{
+	EuropeBalkanique (11, "Europe Balkanique", new ArrayList<Country> () {{
 		add (Country.PaysBas);
 		add (Country.Pologne);
 	}}),
-	France ("France", new ArrayList<Country> () {{
+	France (12, "France", new ArrayList<Country> () {{
 		add (Country.France);
 	}}),
-	RoyaumeUni ("Royaume Uni", new ArrayList<Country> () {{
+	RoyaumeUni (13, "Royaume Uni", new ArrayList<Country> () {{
 		add (Country.RoyaumeUni);
 	}}),
-	EuropeMediterraneenne ("Europe Méditerranéenne", new ArrayList<Country> () {{
+	EuropeMediterraneenne (14, "Europe Méditerranéenne", new ArrayList<Country> () {{
 		add (Country.Italie);
 		add (Country.Espagne);
 	}}),
-	Maghreb ("Maghreb", new ArrayList<Country> () {{
+	Maghreb (15, "Maghreb", new ArrayList<Country> () {{
 		add (Country.Algerie);
 	}}),
-	USA ("USA", new ArrayList<Country> () {{
+	USA (16, "USA", new ArrayList<Country> () {{
 		add (Country.USA);
 	}}),
-	Canada ("Canada", new ArrayList<Country> () {{
+	Canada (17, "Canada", new ArrayList<Country> () {{
 		add (Country.Canada);
 	}}),
-	Chine ("Chine", new ArrayList<Country> () {{
+	Chine (18, "Chine", new ArrayList<Country> () {{
 		add (Country.Chine);
 	}}),
-	PeninsuleIndienne ("Péninsule Indienne", new ArrayList<Country> () {{
+	PeninsuleIndienne (19, "Péninsule Indienne", new ArrayList<Country> () {{
 		add (Country.Inde);
 		add (Country.Pakistan);
 		add (Country.SriLanka);
 	}}),
-	Bresil ("Brésil", new ArrayList<Country> () {{
+	Bresil (20, "Brésil", new ArrayList<Country> () {{
 		add (Country.Bresil);
 	}}),
-	Indonesie ("Indonésie", new ArrayList<Country> () {{
+	Indonesie (21, "Indonésie", new ArrayList<Country> () {{
 		add (Country.Indonesie);
 		add (Country.Philippines);
 	}}),
-	JaponAsie ("Japon Asie", new ArrayList<Country> () {{
+	JaponAsie (22, "Japon Asie", new ArrayList<Country> () {{
 		add (Country.Japon);
 		add (Country.Coree);
 	}}),
-	Venezuela ("Venezuela", new ArrayList<Country> () {{
+	Venezuela (23, "Venezuela", new ArrayList<Country> () {{
 		add (Country.Venezuela);
 	}}),
-	PaysAndins ("Pays Andins", new ArrayList<Country> () {{
+	PaysAndins (24, "Pays Andins", new ArrayList<Country> () {{
 		add (Country.Chili);
 		add (Country.Colombie);
 		add (Country.Bolivie);
 		add (Country.Perou);
 	}}),
-	PeninsuleIndochinoise ("Pénisule Indochinoise", new ArrayList<Country> () {{
+	PeninsuleIndochinoise (25, "Pénisule Indochinoise", new ArrayList<Country> () {{
 		add (Country.Cambodge);
 		add (Country.VietNam);
 		add (Country.Thailande);
 		add (Country.Malaisie);
 	}}),
-	Argentine ("Argentine", new ArrayList<Country> () {{
+	Argentine (26, "Argentine", new ArrayList<Country> () {{
 		add (Country.Argentine);
 	}}),
-	Mexique ("Mexique", new ArrayList<Country> () {{
+	Mexique (27, "Mexique", new ArrayList<Country> () {{
 		add (Country.Mexique);
 	}}),
-	Antilles ("Antilles", new ArrayList<Country> () {{
+	Antilles (28, "Antilles", new ArrayList<Country> () {{
 		add (Country.Cuba);
 	}}),
-	MoyenOrient ("Moyen-Orient", new ArrayList<Country> () {{
+	MoyenOrient (29, "Moyen-Orient", new ArrayList<Country> () {{
 		add (Country.Iran);
 		add (Country.ArabieSaoudite);
 	}});
 	
 	private String name;
 	private ArrayList<Country> listPays;
+	private int idEnsEco;
 	
-	
-	EnsembleEconomique (String name, ArrayList<Country> listPays) {
+	EnsembleEconomique (int id, String name, ArrayList<Country> listPays) {
+		this.idEnsEco = id;
 		this.name = name;
 		this.listPays = listPays;
 	}
+	
+	public int getID () { return this.idEnsEco; }
 }
