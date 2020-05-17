@@ -10,8 +10,8 @@ public enum Ressource {
 	Cobalt (4, "Cobalt", 6),
 	GazNaturel (5, "Gaz Naturel", 8),
 	Argent (6, "Argent", 7),
-	ConstructionAutomobile (7, "Construction Automobile", 8),
-	ConstructionNavale (8, "Construction Navale", 7),
+	ConstructionAutomobile (7, "Construction\nAutomobile", 8),
+	ConstructionNavale (8, "Construction\nNavale", 7),
 	Aluminium (9, "Aluminum", 9),
 	Plomb (10, "Plomb", 6),
 	Uranium (11, "Uranium", 8),
@@ -25,7 +25,7 @@ public enum Ressource {
 	Ble (19, "Blé", 10),
 	The (20, "Thé", 5),
 	Cacao (21, "Cacao", 4),
-	CaoutchoucNaturel (22, "Caoutchouc Naturel", 4),
+	CaoutchoucNaturel (22, "Caoutchouc\nNaturel", 4),
 	Nickel (23, "Nickel", 6);
 	
 	int idRessource;

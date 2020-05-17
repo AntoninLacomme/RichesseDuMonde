@@ -127,5 +127,24 @@ public enum EnsembleEconomique {
 		this.listPays = listPays;
 	}
 	
+	public ArrayList<Country> getCountries () {
+		return this.listPays;
+	}
+	
 	public int getID () { return this.idEnsEco; }
+
+	public static EnsembleEconomique getEnsembleEconomiqueContains(Country country) {
+		for (EnsembleEconomique ee : EnsembleEconomique.values()) {
+			for (Country c : ee.getCountries()) {
+				if (c.equals(country)) {
+					return ee;
+				}
+			}
+		}
+		return null;
+	}
+
+	public String getName() {
+		return this.name;
+	}
 }

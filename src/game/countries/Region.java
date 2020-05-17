@@ -65,4 +65,25 @@ public enum Region {
 	}
 	
 	public String getID () { return this.id; }
+	
+	public static Region getRegionContains (Country country) {
+		for (Region r : Region.values()) {
+			for (EnsembleEconomique ee : r.mesEnsemblesEco) {
+				for (Country c : ee.getCountries()) {
+					if (c.equals(country)) {
+						return r;
+					}
+				}
+			}
+		}
+		return null;
+	}
+
+	public Color getColor() {
+		return this.color;
+	}
+
+	public String getName() {
+		return this.name;
+	}
 }

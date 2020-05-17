@@ -1,8 +1,10 @@
 package game.countries;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import game.ressources.Ressource;
+import game.ressources.TitreExploitation;
 
 public enum Country {
 	Russie ("Russie", new HashMap <Ressource, Integer> () {{
@@ -270,9 +272,19 @@ public enum Country {
 		this.possessions = possesions;
 	}
 	
-	public Country[] getAllCountries () {
+	public static Country[] getAllCountries () {
 		return Country.values();
 	}
 	
+	public ArrayList<TitreExploitation> getAllTitresExploitation () {
+		ArrayList<TitreExploitation> lesTitres = new ArrayList<TitreExploitation> ();
+		for (Ressource r : possessions.keySet()) {
+			lesTitres.add(new TitreExploitation(r, possessions.get(r), this));
+		}
+		return lesTitres;
+	}
 
+	public String getName() {
+		return this.name;
+	}
 }

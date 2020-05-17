@@ -20,10 +20,10 @@ public class Game implements Runnable {
 		
 		
 		// System.out.println(this.plateau.toString());
-		
+		/*
 		for (Actualite a: this.plateau.getAllActualite ()) {
 			System.out.println(a.getDescription () + "\n");
-		}
+		}*/
 	}	
 	
 	public Banque getBanque() {
