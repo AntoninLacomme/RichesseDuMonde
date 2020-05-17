@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
+<Pane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TabPane fx:id="idTabPaneBanqueTitre" prefHeight="600.0" prefWidth="900.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+        </tabs>
+      </TabPane>
+   </children>
 </Pane>
-

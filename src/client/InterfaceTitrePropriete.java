@@ -10,7 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
 
-public class InterfaceTitrePropriete extends Scene {
+public class InterfaceTitrePropriete extends Pane {
 	
 	public InterfaceTitrePropriete(Parent root, TitreExploitation titre) {
 		super(root);

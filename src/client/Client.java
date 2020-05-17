@@ -17,7 +17,7 @@ public class Client extends Application {
 	
 	@Override
 	public void start(Stage mainScene) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("ressources/fxml/TitrePropriete.fxml"));
+		/*Parent root = FXMLLoader.load(getClass().getResource("ressources/fxml/TitrePropriete.fxml"));
 		
 		Country pays = Country.France;
 		
@@ -30,6 +30,12 @@ public class Client extends Application {
 			otherStage.show ();
 		}
 		
+		*/
+		
+		InterfaceBanquePropriete scene = new InterfaceBanquePropriete (FXMLLoader.load(getClass().getResource("ressources/fxml/BanquePropriete.fxml")));
+		Stage st = new Stage ();
+		st.setScene(scene);
+		st.show();
 		//mainScene.setScene(scene);
 		mainScene.show ();
 		mainScene.centerOnScreen();
