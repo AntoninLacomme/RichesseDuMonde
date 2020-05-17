@@ -1,6 +1,10 @@
 package game.ressources;
 
+import java.util.ArrayList;
+
 import game.countries.Country;
+import game.countries.EnsembleEconomique;
+import game.countries.Region;
 
 public enum Ressource {
 	Petrole (0, "Pétrole", 12),
@@ -10,8 +14,8 @@ public enum Ressource {
 	Cobalt (4, "Cobalt", 6),
 	GazNaturel (5, "Gaz Naturel", 8),
 	Argent (6, "Argent", 7),
-	ConstructionAutomobile (7, "Construction\nAutomobile", 8),
-	ConstructionNavale (8, "Construction\nNavale", 7),
+	ConstructionAutomobile (7, "Construction Automobile", 8),
+	ConstructionNavale (8, "Construction Navale", 7),
 	Aluminium (9, "Aluminum", 9),
 	Plomb (10, "Plomb", 6),
 	Uranium (11, "Uranium", 8),
@@ -25,7 +29,7 @@ public enum Ressource {
 	Ble (19, "Blé", 10),
 	The (20, "Thé", 5),
 	Cacao (21, "Cacao", 4),
-	CaoutchoucNaturel (22, "Caoutchouc\nNaturel", 4),
+	CaoutchoucNaturel (22, "Caoutchouc Naturel", 4),
 	Nickel (23, "Nickel", 6);
 	
 	int idRessource;
@@ -66,8 +70,33 @@ public enum Ressource {
 		return null;
 	}
 
+	static public Ressource getRessourceByName (String name) {
+		for (Ressource r : Ressource.values()) {
+			if (r.getName().equals(name)) {
+				return r;
+			}
+		}
+		return null;
+	}
+	
 	public boolean isEqual(Ressource ressource) {
 		if (this.name() == ressource.name()) { return true; }
 		return false;
+	}
+
+	public static ArrayList<TitreExploitation> getAllTitresExploitation (Ressource ressource) {
+		ArrayList<TitreExploitation> titres = new ArrayList<TitreExploitation> ();
+		for (Region r : Region.values()) {
+			for (EnsembleEconomique ee : r.getAllEnsembleEconomique()) {
+				for (Country c : ee.getCountries()) {
+					for (TitreExploitation t : c.getAllTitresExploitation()) {
+						if (t.getRessource().equals(ressource)) {
+							titres.add(t);
+						}
+					}
+				}
+			}
+		}
+		return titres;
 	}
 }

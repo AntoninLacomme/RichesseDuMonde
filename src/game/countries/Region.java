@@ -21,7 +21,7 @@ public enum Region {
 		add (EnsembleEconomique.Argentine);
 		add (EnsembleEconomique.Antilles);
 	}}),
-	USA ("C", "USA", Color.ORANGE, new ArrayList<EnsembleEconomique> () {{
+	USA ("C", "USA", new Color(255, 140, 0), new ArrayList<EnsembleEconomique> () {{
 		add (EnsembleEconomique.USA);
 	}}),
 	Europe ("D", "Europe", Color.BLUE, new ArrayList<EnsembleEconomique> () {{
@@ -33,7 +33,7 @@ public enum Region {
 		add (EnsembleEconomique.RoyaumeUni);
 		add (EnsembleEconomique.France);
 	}}),
-	Asie ("E", "Asie", Color.YELLOW, new ArrayList<EnsembleEconomique> () {{
+	Asie ("E", "Asie", new Color(255, 228, 54), new ArrayList<EnsembleEconomique> () {{
 		add (EnsembleEconomique.Chine);
 		add (EnsembleEconomique.PeninsuleIndochinoise);
 		add (EnsembleEconomique.PeninsuleIndienne);
