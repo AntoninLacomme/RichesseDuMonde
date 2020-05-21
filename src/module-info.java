@@ -7,4 +7,6 @@ module richessesdumonde.client {
 	requires javafx.base;
 	requires java.xml;
 	exports client;
+	exports client.controllers;
+	opens client.controllers;
 }

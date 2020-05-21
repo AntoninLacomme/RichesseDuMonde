@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import game.countries.Country;
 import game.countries.Region;
 import game.ressources.Ressource;
 import game.ressources.TitreExploitation;
@@ -32,7 +31,7 @@ public class InterfaceBanquePropriete extends Scene {
 		for (Region r : Region.values()) {
 			Tab tab = new Tab (r.getName());
 			try {
-				tab.setContent(new InterfaceRegionPropriete (FXMLLoader.load(getClass().getResource("ressources/fxml/RegionPropriete.fxml")), r));
+				tab.setContent(new InterfaceRegionPropriete (FXMLLoader.load(Client.class.getResource("ressources/fxml/RegionPropriete.fxml")), r));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

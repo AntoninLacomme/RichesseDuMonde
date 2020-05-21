@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import game.countries.Country;
 import game.ressources.TitreExploitation;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,10 +14,17 @@ import javafx.stage.Stage;
 import protocole.Protocole;
 
 public class Client extends Application {
-	private ClientUDP maConnectionClient;
+	static private GameClient game;
+	
+	public static GameClient getGame () {
+		if (Client.game == null) {
+			Client.game = new GameClient ();
+		}
+		return Client.game;
+	}
 	
 	@Override
-	public void start(Stage mainScene) throws Exception {
+	public void start(Stage mstage) throws Exception {
 		/*Parent root = FXMLLoader.load(getClass().getResource("ressources/fxml/TitrePropriete.fxml"));
 		
 		Country pays = Country.France;
@@ -31,19 +39,21 @@ public class Client extends Application {
 		}
 		
 		*/
-		
+		/*
 		InterfaceBanquePropriete scene = new InterfaceBanquePropriete (FXMLLoader.load(getClass().getResource("ressources/fxml/BanquePropriete.fxml")));
 		Stage st = new Stage ();
 		st.setScene(scene);
-		st.show();
-		//mainScene.setScene(scene);
-		mainScene.show ();
-		mainScene.centerOnScreen();
+		st.show();*/
+		
+		InterfaceConnexion mainscene = new InterfaceConnexion (FXMLLoader.load(getClass().getResource("ressources/fxml/SceneConnexion.fxml")));
+		mstage.setScene(mainscene);
+		mstage.show ();
+		mstage.centerOnScreen();
 	}
 	
 	@Override
 	public void init() throws Exception {
-		int[] ports = Protocole.getAvailablePort(2);
+		/*int[] ports = Protocole.getAvailablePort(2);
 		maConnectionClient = new ClientUDP ("Antonin", "127.0.0.1", 10101, ports[0], ports[1]);
 		new Thread (maConnectionClient).start ();
 		
@@ -52,7 +62,7 @@ public class Client extends Application {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		maConnectionClient.getEmptyPlateau();
+		maConnectionClient.getEmptyPlateau();*/
 	}
 	
 	@Override
