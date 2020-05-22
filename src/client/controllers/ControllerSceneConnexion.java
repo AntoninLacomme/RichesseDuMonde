@@ -65,8 +65,12 @@ public class ControllerSceneConnexion {
 	
 	@FXML
 	public void joinRoom (Event e) {
-	    idPaneAction.getChildren().clear();
-	    System.out.println("Rejoindre une room");
-		
+		idPaneAction.getChildren().clear();
+		  
+	    try {
+			idPaneAction.getChildren().add(FXMLLoader.load(new File("src/client/ressources/fxml/PaneJoinRoom.fxml").toURI().toURL()));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 	}
 }

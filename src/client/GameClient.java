@@ -23,4 +23,8 @@ public class GameClient {
 	public void setPseudo(String pseudo) {
 		this.pseudo = pseudo;
 	}
+
+	public void closeConnectionClient() {
+		maConnectionClient.closeServer();
+	}
 }
