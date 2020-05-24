@@ -42,8 +42,8 @@ public class ControllerSceneConnexion {
 	    buttonJoinPartie.setDisable(true);
 	    idPaneAction.getChildren().clear();
 	    
-	    if (pseudo.length() < 6) {
-	    	labelErrorPseudo.setText("Votre pseudo doit faire au minimum 6 charactères.");
+	    if (pseudo.length() < 4) {
+	    	labelErrorPseudo.setText("Votre pseudo doit faire au minimum 4 charactères.");
 	    	return;
 	    }
 	    

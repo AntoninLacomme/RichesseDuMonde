@@ -7,16 +7,22 @@ import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 
+import client.controllers.ControllerMainPlateau;
+import game.Plateau;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import server.ServerUDP;
 import protocole.CallBackUDP;
 import protocole.DataUDP;
 
 public class ClientUDP extends ServerUDP {
-	private String name;
-	private int portDefault;
-	private int portConnection;
-	private int myportEnvoi;
-	private InetAddress ipConnect;
+	protected String name;
+	protected int portDefault;
+	protected int portConnection;
+	protected int myportEnvoi;
+	protected InetAddress ipConnect;
 	
 	private DatagramSocket envoi;
 	
@@ -40,26 +46,16 @@ public class ClientUDP extends ServerUDP {
 			e.printStackTrace();
 		}
 		
-		this.setEventListener("HELLO_WORLD", new CallBackUDP () {
-			@Override
-			public void run (DataUDP data) {
-				System.out.println("LE SERVER A REPONDU HELLO WORLD");
-				DataUDP data1 = new DataUDP ("HELLO_WORLD");
-				data1.addData("hello", ":p");
-				data1.addData("world", "C:");
-				sendPacket(data1);
-			}
-		});
-		
-		
 		this.messageStartingServer = "Lancement du client " + this.name;
 		
 		DataUDP data = new DataUDP ("CONNECTION");
 		data.addData("name", this.name);
 		data.addData("port", String.valueOf(myportReception));
 		this.sendPacket(data);
+		
 	}
-	
+
+
 	public void getEmptyPlateau () {
 		DataUDP message = new DataUDP ("GET_EMPTY_PLATEAU");
 		this.sendPacket(message);

@@ -78,6 +78,15 @@ public enum Region {
 		}
 		return null;
 	}
+	
+	public static Region getRegionByID (String id) {
+		for (Region r: Region.values()) {
+			if (r.getID().equals(id)) {
+				return r;
+			}
+		}
+		return null;
+	}
 
 	public Color getColor() {
 		return this.color;

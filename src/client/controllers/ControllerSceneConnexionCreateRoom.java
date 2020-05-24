@@ -87,6 +87,7 @@ public class ControllerSceneConnexionCreateRoom {
 				}
 				
 				Client.getGame().launchConnectionClient();
+				Client.setInterfacePartie();
 				
 				for (int i=0; i<Integer.parseInt(spinnerNbJoueur.getValue().toString()); i++) {
 					System.out.println("Il faudrait lancé un bot");

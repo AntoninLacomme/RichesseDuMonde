@@ -12,13 +12,15 @@ import protocole.DataUDP;
 
 public class ServerUDP implements Runnable {
 	
-	private DatagramSocket server;
+	protected DatagramSocket server;
 	protected ArrayList<Event> eventsListeners = new ArrayList<Event> ();
 	
 	protected boolean runServer = true;
 	protected String messageStartingServer = "Le serveur n'a pas pus démarrer...";
+	protected int portReception;
 	
 	public ServerUDP (int port) {
+		this.portReception = port;
 		try {
 			this.server = new DatagramSocket(port);
 			this.messageStartingServer = "Lancement du serveur";
@@ -70,7 +72,7 @@ public class ServerUDP implements Runnable {
 				tTraitement.start();
 			} 
 			catch (IOException e) {
-				e.printStackTrace();
+				//e.printStackTrace();
 			}
 		}
 	}
@@ -87,30 +89,7 @@ public class ServerUDP implements Runnable {
 	}
 	
 	public void closeServer () {
-		Thread closeServ = new Thread () {
-			@Override
-			public void run () {
-				DataUDP data = new DataUDP ("SHUTDOWN");
-				
-		        byte[] buffer = data.getCommande().getBytes();
-				DatagramSocket client;
-				try {
-					client = new DatagramSocket();
-			        DatagramPacket packet = new DatagramPacket(buffer, buffer.length, server.getInetAddress(), server.getPort());
-			        packet.setData(buffer);
-			        
-			        client.send(packet);
-		        }
-				catch (SocketException e) {
-					e.printStackTrace();
-				} 
-				catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		};
-		
-		closeServ.start();
+		this.shutdown();
 	}
 	
 	synchronized private void traitementRequeteClient (DatagramPacket packet) {
@@ -153,6 +132,8 @@ public class ServerUDP implements Runnable {
 	protected void shutdown () {
 		System.err.println("SHUTDOWN - Demande d'arrêt du server");
 		runServer = false;
+		Thread.currentThread().interrupt();
+		this.server.close();
 	}
 
 }

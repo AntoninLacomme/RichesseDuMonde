@@ -1,5 +1,6 @@
 package client;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import game.countries.Country;
@@ -15,6 +16,7 @@ import protocole.Protocole;
 
 public class Client extends Application {
 	static private GameClient game;
+	static public Stage mainStage;
 	
 	public static GameClient getGame () {
 		if (Client.game == null) {
@@ -23,51 +25,55 @@ public class Client extends Application {
 		return Client.game;
 	}
 	
+	public static Stage getMainStage () {
+		return Client.mainStage;
+	}
+	
 	@Override
 	public void start(Stage mstage) throws Exception {
-		/*Parent root = FXMLLoader.load(getClass().getResource("ressources/fxml/TitrePropriete.fxml"));
+		Client.mainStage = mstage;	
+
+		Client.setInterfaceConnexion();
 		
-		Country pays = Country.France;
+		Client.mainStage.show ();
+		Client.mainStage.centerOnScreen();
 		
-		ArrayList<TitreExploitation> lesTitres = pays.getAllTitresExploitation();		
-		for (TitreExploitation titre : lesTitres) {
-			Stage otherStage = new Stage ();
-			InterfaceTitrePropriete scene = new InterfaceTitrePropriete (FXMLLoader.load(getClass().getResource("ressources/fxml/TitrePropriete.fxml")), titre);
-			otherStage.setResizable(false);
-			otherStage.setScene(scene);
-			otherStage.show ();
-		}
-		
-		*/
-		/*
-		InterfaceBanquePropriete scene = new InterfaceBanquePropriete (FXMLLoader.load(getClass().getResource("ressources/fxml/BanquePropriete.fxml")));
-		Stage st = new Stage ();
-		st.setScene(scene);
-		st.show();*/
-		
-		InterfaceConnexion mainscene = new InterfaceConnexion (FXMLLoader.load(getClass().getResource("ressources/fxml/SceneConnexion.fxml")));
-		mstage.setScene(mainscene);
-		mstage.show ();
-		mstage.centerOnScreen();
 	}
 	
 	@Override
 	public void init() throws Exception {
-		/*int[] ports = Protocole.getAvailablePort(2);
-		maConnectionClient = new ClientUDP ("Antonin", "127.0.0.1", 10101, ports[0], ports[1]);
-		new Thread (maConnectionClient).start ();
 		
-		try {
-			Thread.sleep(100);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		maConnectionClient.getEmptyPlateau();*/
 	}
 	
 	@Override
 	public void stop() throws Exception {
-		super.stop();
+		super.stop();		
+		try {
+			game.sendEventDeconnected ();
+			game.closeConnectionClient();
+		} catch (Exception e) {
+			// aucun client existant ???
+		}
+	}
+	
+	public static void setInterfaceConnexion () {
+		try {
+			InterfaceConnexion mainscene = new InterfaceConnexion (FXMLLoader.load(Client.class.getResource("ressources/fxml/SceneConnexion.fxml")));
+			Client.mainStage.setScene(mainscene);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static void setInterfacePartie () {
+		try {
+			InterfacePartie mainscene = new InterfacePartie (FXMLLoader.load(Client.class.getResource("ressources/fxml/ScenePartie.fxml")));
+			Client.mainStage.setScene(mainscene);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	

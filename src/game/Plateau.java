@@ -1,6 +1,7 @@
 package game;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 
 import game.actualite.Actualite;
@@ -8,8 +9,11 @@ import game.countries.Country;
 import game.countries.EnsembleEconomique;
 import game.countries.Region;
 import game.ressources.Ressource;
+import protocole.DataUDP;
 
 public class Plateau {
+	
+	public static HashMap<Integer, Integer[]> patronPlateau = Plateau.initializePatronPlateau ();
 	
 	// tableau de 64 cases
 	private Case[] monPlateau;
@@ -20,6 +24,88 @@ public class Plateau {
 	
 	public Plateau () {
 		this.buildPlateau();
+	}
+	
+	private static HashMap<Integer, Integer[]> initializePatronPlateau() {
+		HashMap<Integer, Integer[]> p = new HashMap<Integer, Integer[]> ();
+		for (Integer i=0; i<10; i++) {
+			p.put(i, new Integer[] {i+1, 0});
+		}
+		int base = 10;
+		for (Integer i=0; i<8; i++) {
+			p.put(base + i, new Integer[] {10, i+1});
+		}
+		base = 18;
+		for (Integer i=0; i<10; i++) {
+			p.put(base + i, new Integer[] {9-i, 8});
+		}
+		base = 28;
+		for (Integer i=0; i<7; i++) {
+			p.put(base + i, new Integer[] {0, 7-i});
+		}
+		base = 35;
+		for (Integer i=0; i<9; i++) {
+			p.put(base + i, new Integer[] {i+1, 1});
+		}
+		base = 44;
+		for (Integer i=0; i<6; i++) {
+			p.put(base + i, new Integer[] {9, i + 2});
+		}
+		base = 50;
+		for (Integer i=0; i<8; i++) {
+			p.put(base + i, new Integer[] {8 - i, 7});
+		}
+		base = 58;
+		for (Integer i=0; i<6; i++) {
+			p.put(base + i, new Integer[] {1, 6-i});
+		}		
+		return p;
+	}
+
+	public Plateau (DataUDP data) {
+		int index = 0;
+		boolean affected;
+		this.monPlateau = new Case[64];
+		for (String[] tuple : data.getData()) {
+			// tuple[0] -> la case
+			// tuple[1] -> la ressource associée			
+			affected = false;
+			Ressource r = null;
+			if (tuple[1].length() > 0) {
+				r = Ressource.getRessourceByID(Integer.parseInt(tuple[1]));
+			}
+			
+			Region region = null;
+			region = Region.getRegionByID (tuple[0]);
+			
+			if (!affected && region != null && r != null) {
+				this.monPlateau[index] = new Case (region, r);
+				affected = true;
+			}
+			
+			EnsembleEconomique ee = null;
+			try {
+				ee = EnsembleEconomique.getEnsembleEconomiqueByID (Integer.parseInt(tuple[0]));
+			} catch (Exception error) {
+				// do nothing
+			}
+			
+			if (!affected && ee != null && r != null) {
+				this.monPlateau[index] = new Case (ee, r);
+				affected = true;
+			}
+			
+			if (!affected && r != null) {
+				this.monPlateau[index] = new Case (tuple[0], r);
+				affected = true;
+			}
+			
+			if (!affected) {
+				this.monPlateau[index] = new Case (tuple[0]);
+			}
+			
+			index++;
+		}
 	}
 	
 	private void buildPlateau () {

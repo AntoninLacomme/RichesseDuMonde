@@ -13,7 +13,7 @@ import game.Case;
 import game.Game;
 
 public class MainServerUDP extends ServerUDP {
-	private int maxPlayers = 2;
+	private int maxPlayers = 4;
 	
 	private ListPlayers mesPlayers;
 	private Game game;
@@ -71,9 +71,7 @@ public class MainServerUDP extends ServerUDP {
 	synchronized protected void eventGetEmptyPlateau (DataUDP data) {
 		DataUDP datas = new DataUDP ("ANSWER_EMPTY_PLATEAU");
 
-		System.out.println(this.game.getPlateau().toString());
 		for (Case c : this.game.getPlateau().getAllCases()) {
-			System.out.println(c.getID());
 			if (c.getIDRessource() >= 0) {
 				datas.addData(c.getID(), c.getIDRessource() + "");
 			}
@@ -113,7 +111,7 @@ public class MainServerUDP extends ServerUDP {
 	synchronized protected void eventDeconnection (DataUDP data) {
 		try {
 			for (Player p : mesPlayers.getPlayers()) {
-				if (p.getIP().equals(data.getIp()) && p.getPortReception() == data.getPort()) {
+				if (p.getIP().equals(data.getIp()) && p.getPortReception() == Integer.parseInt(data.getValue("port"))) {
 					System.out.println("Le client " + p.getName() + " c'est déconnecté");
 					mesPlayers.remove(p);
 					return;

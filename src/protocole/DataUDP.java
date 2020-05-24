@@ -104,8 +104,8 @@ public class DataUDP {
 	public String convertDataToMessage () {
 		String message = "{";
 		if (data.size() > 0) {
-			for (String o : this.getKeysData()) {
-				message += "<" + o + "><" + this.getValue(o) + ">";
+			for (int i=0; i<data.size(); i++) {
+				message += "<" + this.getKeysData().get(i) + "><" + this.getValuesData().get(i) + ">";
 				message += ";";
 			}
 		}

@@ -147,4 +147,13 @@ public enum EnsembleEconomique {
 	public String getName() {
 		return this.name;
 	}
+
+	public static EnsembleEconomique getEnsembleEconomiqueByID(int id) {
+		for (EnsembleEconomique ee : EnsembleEconomique.values()) {
+			if (ee.getID() == id) {
+				return ee;
+			}
+		}
+		return null;
+	}
 }

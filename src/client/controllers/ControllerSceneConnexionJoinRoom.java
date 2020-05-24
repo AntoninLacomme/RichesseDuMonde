@@ -18,6 +18,10 @@ public class ControllerSceneConnexionJoinRoom {
 	@FXML
 	Label labelError;
 	
+	public void initialize () {
+		textfieldIP.setText("127.0.0.1");
+		textfieldPort.setText("10101");
+	}
 	
 	public void joinGame (Event e) {
 		labelError.setText("");
@@ -28,8 +32,8 @@ public class ControllerSceneConnexionJoinRoom {
 				
 				Client.getGame().setConnectionClient(textfieldIP.getText(), Integer.parseInt(textfieldPort.getText()));
 				Client.getGame().launchConnectionClient();
-				
-				Client.getGame().closeConnectionClient();
+
+				Client.setInterfacePartie();
 			}
 			catch (Exception e1) {
 				labelError.setText(labelError.getText() + "Un port doit être numérique");

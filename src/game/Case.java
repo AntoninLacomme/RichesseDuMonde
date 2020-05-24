@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import game.countries.EnsembleEconomique;
 import game.countries.Region;
 import game.ressources.Ressource;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 
 public class Case {
 		public String name;
@@ -60,5 +62,21 @@ public class Case {
 				txt += "null";
 			}
 			return txt;
+		}
+		
+		public void drawCasesJavaFX (GraphicsContext ctx, int position, int wc, int hc) {
+			Integer[] coords = Plateau.patronPlateau.get(position);
+			ctx.save();
+			ctx.setLineWidth(10);
+			ctx.setStroke(Color.BLACK);
+			System.out.println(position + " =====> + " + this.toString() + "\n>>> {" + coords[0] + "," + coords[1] + "}");
+			ctx.strokeRect(coords[0] * wc, coords[1] * hc, wc, hc);
+			ctx.fillText(this.name, coords[0] * wc, coords[1] * hc + hc / 4);
+			try {
+				ctx.fillText(this.ressource.getName(), coords[0] * wc, coords[1] * hc + 3 * hc / 4);
+			} catch (Exception except) {
+				
+			}
+			ctx.restore();
 		}
 	}

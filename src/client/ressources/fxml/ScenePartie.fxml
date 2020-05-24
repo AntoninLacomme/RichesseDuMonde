@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox prefHeight="800.0" prefWidth="1550.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="client.controllers.ControllerMainPlateau">
+   <children>
+      <Pane prefHeight="800.0" prefWidth="1550.0">
+         <children>
+            <Canvas fx:id="canbckg" height="750.0" layoutX="200.0" layoutY="50.0" width="1350.0" />
+            <Canvas fx:id="canfont" height="750.0" layoutX="200.0" layoutY="50.0" onMouseMoved="#mouseMovePlateau" onMouseClicked="#mouseClickPlateau" width="1350.0" />
+            <Pane prefHeight="800.0" prefWidth="200.0" />
+            <Pane layoutX="200.0" prefHeight="50.0" prefWidth="1200.0" />
+         </children>
+      </Pane>
+   </children>
+</VBox>
