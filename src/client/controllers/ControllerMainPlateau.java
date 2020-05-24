@@ -6,7 +6,11 @@ import game.Plateau;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
 public class ControllerMainPlateau {
@@ -23,6 +27,12 @@ public class ControllerMainPlateau {
 	Canvas canfont;
 	
 	@FXML
+	Pane paneShowMenu;
+	
+	@FXML
+	Button idButtonTest;
+	
+	@FXML
 	public void mouseMovePlateau (MouseEvent e) {
 		if (lastPositionX >= 0 && lastPositionY >= 0) {
 			int rayon = 5;
@@ -34,12 +44,38 @@ public class ControllerMainPlateau {
 		lastPositionY = (int) e.getY();
 	}
 	
+	
+	
 	@FXML
-	public void mouseClickPlateau (MouseEvent e) {
+	public void mouseClickPlateau (MouseEvent ev) {
 		
 	}
 	
+	@FXML
+	public void showMenuMouseExit (MouseEvent ev) {
+		paneShowMenu.setVisible(false);
+	}
+	@FXML
+	public void eventPaneMenuMouseEnter (MouseEvent e) {
+		paneShowMenu.setVisible(true);
+	}
+	@FXML
+	public void eventShowMenuCliqued (MouseEvent e) {
+		if (e.getButton().equals(MouseButton.SECONDARY)) {
+			paneShowMenu.setVisible(false);
+		}
+	}
+	
+	
+	@FXML
+	public void eventMainKeyPressed (KeyEvent e) {
+		if (e.getCode().getCode() == 27) {
+			paneShowMenu.setVisible(false);
+		}
+	}
+	
 	public void initialize () {
+		paneShowMenu.setVisible(false);
 		Client.getGame().setControllerPlateau(this);
 		
 		this.ctxBckg = canbckg.getGraphicsContext2D();
@@ -47,36 +83,6 @@ public class ControllerMainPlateau {
 		
 		this.ctxFont.setFill(Color.TRANSPARENT);
 		this.ctxFont.fillRect(0, 0, canfont.getWidth(), canfont.getHeight());
-		
-		this.ctxBckg.clearRect(0, 0, canbckg.getWidth(), canbckg.getHeight());
-		
-		this.drawEmptyPlateau(this.ctxBckg);
-	}
-	
-	private void drawEmptyPlateau (GraphicsContext ctx) {
-		int wc = (int) canbckg.getWidth() / 11;
-		int hc = (int) canbckg.getHeight() / 11;
-		ctx.save();
-		ctx.setLineWidth(10);
-		ctx.setStroke(Color.BLACK);
-		/*
-		for (int i=0; i<11; i++) {
-			ctx.strokeRect(i * wc, 0, wc, hc);
-			ctx.strokeRect(i * wc, hc, wc, hc);
-			
-			ctx.strokeRect(i * wc, 9 * hc, wc, hc);
-			ctx.strokeRect(i * wc, 10 * hc, wc, hc);
-		}
-		
-		for (int i=2; i<9; i++) {
-			ctx.strokeRect(0, i * hc, wc, hc);
-			ctx.strokeRect(1 * wc, i * hc, wc, hc);
-			
-			ctx.strokeRect(9 * wc, i * hc, wc, hc);
-			ctx.strokeRect(10 * wc, i * hc, wc, hc);
-		}*/
-		
-		ctx.restore();
 	}
 	
 	public void drawPlateau (Plateau p) {
@@ -90,9 +96,5 @@ public class ControllerMainPlateau {
 			index++;
 		}
 	}
-	
 
-	public void helloworld () {
-		System.out.println("Hello world");
-	}
 }

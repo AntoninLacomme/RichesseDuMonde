@@ -69,7 +69,6 @@ public class Case {
 			ctx.save();
 			ctx.setLineWidth(10);
 			ctx.setStroke(Color.BLACK);
-			System.out.println(position + " =====> + " + this.toString() + "\n>>> {" + coords[0] + "," + coords[1] + "}");
 			ctx.strokeRect(coords[0] * wc, coords[1] * hc, wc, hc);
 			ctx.fillText(this.name, coords[0] * wc, coords[1] * hc + hc / 4);
 			try {

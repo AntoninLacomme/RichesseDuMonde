@@ -1,18 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-
-<VBox prefHeight="800.0" prefWidth="1550.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="client.controllers.ControllerMainPlateau">
+<VBox onKeyPressed="#eventMainKeyPressed" prefHeight="800.0" prefWidth="1550.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controllers.ControllerMainPlateau">
    <children>
       <Pane prefHeight="800.0" prefWidth="1550.0">
          <children>
-            <Canvas fx:id="canbckg" height="750.0" layoutX="200.0" layoutY="50.0" width="1350.0" />
-            <Canvas fx:id="canfont" height="750.0" layoutX="200.0" layoutY="50.0" onMouseMoved="#mouseMovePlateau" onMouseClicked="#mouseClickPlateau" width="1350.0" />
-            <Pane prefHeight="800.0" prefWidth="200.0" />
-            <Pane layoutX="200.0" prefHeight="50.0" prefWidth="1200.0" />
+            <Canvas fx:id="canbckg" height="800.0" layoutX="200.0" width="1350.0" />
+            <Canvas fx:id="canfont" height="800.0" layoutX="200.0" onMouseClicked="#mouseClickPlateau" onMouseMoved="#mouseMovePlateau" width="1350.0" />
+            <Pane prefHeight="800.0" prefWidth="200.0">
+               <children>
+                  <ToolBar onMouseEntered="#eventPaneMenuMouseEnter" orientation="VERTICAL" prefHeight="800.0" prefWidth="200.0">
+                    <items>
+                      <Button fx:id="idButtonTest" alignment="CENTER" cacheShape="false" cancelButton="true" centerShape="false" contentDisplay="CENTER" defaultButton="true" focusTraversable="false" graphicTextGap="16.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="190.0" scaleShape="false" text="JOUEURS" textAlignment="CENTER">
+                           <font>
+                              <Font name="Cambria" size="26.0" />
+                           </font>
+                        </Button>
+                    </items>
+                  </ToolBar>
+               </children></Pane>
+            <Pane fx:id="paneShowMenu" layoutX="200.0" onMouseClicked="#eventShowMenuCliqued" onMouseExited="#showMenuMouseExit" prefHeight="800.0" prefWidth="500.0" style="-fx-background-color: red;" />
          </children>
       </Pane>
    </children>

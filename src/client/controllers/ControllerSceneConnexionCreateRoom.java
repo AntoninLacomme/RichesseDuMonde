@@ -68,20 +68,13 @@ public class ControllerSceneConnexionCreateRoom {
 	@FXML
 	public void launchGame (Event e) {
 		// premièrement, lancement d'un serveur
-		Platform.runLater(new Runnable () {			
-			@Override
-			public void run() {
-				Thread tServer = new Thread (new MainServerUDP (10101));
-				tServer.start();
-			}
-		});
-		
+		new Thread (new MainServerUDP (10101)).start();
 		
 		Platform.runLater(new Runnable () {			
 			@Override
 			public void run() {
 				try {
-					Thread.sleep(100);
+					Thread.sleep(20);
 				} catch (InterruptedException e1) {
 					e1.printStackTrace();
 				}
@@ -94,6 +87,7 @@ public class ControllerSceneConnexionCreateRoom {
 				}
 			}
 		});
+		
 		
 	}
 	

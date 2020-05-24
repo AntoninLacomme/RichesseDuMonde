@@ -27,8 +27,6 @@ public class MyClientUDP extends ClientUDP {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		
-		this.getFullPlateau();
 	}
 	
 	public void getFullPlateau () {
@@ -42,6 +40,8 @@ public class MyClientUDP extends ClientUDP {
 	
 	public void setControllerMainPlateau (ControllerMainPlateau ctrl) {
 		this.ctrlMain = ctrl;
+		
+		this.getFullPlateau();
 	}
 
 	public void sendEventDeconnected() {

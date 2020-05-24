@@ -27,6 +27,8 @@ public class MainServerUDP extends ServerUDP {
 		
 		this.mesPlayers = new ListPlayers ();
 		
+		// Ajouts des events de réception
+		
 		this.setEventListener("CONNECTION", new CallBackUDP () {
 			@Override
 			public void run (DataUDP data) {
@@ -47,13 +49,20 @@ public class MainServerUDP extends ServerUDP {
 				eventGetEmptyPlateau (data);
 			}
 		});
+		
+		this.setEventListener("GET_LIST_PLAYERS", new CallBackUDP () {
+			@Override
+			public void run (DataUDP data) {
+				eventGetListPlayers (data);
+			}
+		});
 	}
-	
+
 	synchronized Player findPlayerByIp (InetAddress ip, int port) {
 		try {
-			System.out.println("A chercher : " + ip.toString() + " / " + port);
+			//System.out.println("A chercher : " + ip.toString() + " / " + port);
 			for (Player p : mesPlayers.getPlayers()) {
-				System.out.println("ID : " + p.getIP().toString() + "\nPORT : " + p.getPortEmission());
+				//System.out.println("ID : " + p.getIP().toString() + "\nPORT : " + p.getPortEmission());
 				if (p.getIP().equals(ip) && p.getPortEmission() == port) {
 					return p;
 				}
@@ -83,6 +92,21 @@ public class MainServerUDP extends ServerUDP {
 		p.sendDataToPlayer(datas);
 	}
 	
+	protected void eventGetListPlayers(DataUDP data) {
+		DataUDP datas = new DataUDP ("ANSWER_GET_PLAYERS");
+		
+		try {
+			for (Player p: this.mesPlayers.getPlayers()) {
+				datas.addData(p.getName());
+			}
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		this.findPlayerByIp(data.getIp(), data.getPort()).sendDataToPlayer(datas);
+	}
+	
+	
 	synchronized protected void eventConnection (DataUDP data) {
 		System.out.println("Hey, j'ai reçu un event CONNECTION, visiblement de le type s'appelerai " + data.getValue("name") + "\nIP >>> " + data.getIp().toString() + "\nPORT >>> " + data.getPort());
 		Player player = new Player (data.getValue("name"), data.getIp(), data.getPort(), Integer.parseInt(data.getValue("port")));
@@ -106,6 +130,27 @@ public class MainServerUDP extends ServerUDP {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		
+		sendToAllPlayersConnection ();
+	}
+	
+	synchronized protected void sendToAllPlayersConnection () {
+		try {
+			DataUDP datas = new DataUDP ("ANSWER_GET_PLAYERS");			
+			try {
+				for (Player p: this.mesPlayers.getPlayers()) {
+					datas.addData(p.getName());
+				}
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
+			for (Player p : mesPlayers.getPlayers()) {
+				p.sendDataToPlayer(datas);
+			}
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 	synchronized protected void eventDeconnection (DataUDP data) {
@@ -120,6 +165,8 @@ public class MainServerUDP extends ServerUDP {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		
+		sendToAllPlayersConnection ();
 	}
 	
 	protected void sendPacket (Player p, DataUDP message) {

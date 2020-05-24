@@ -9,11 +9,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="800.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controllers.ControllerSceneConnexion">
+<VBox prefHeight="800.0" prefWidth="1550.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controllers.ControllerSceneConnexion">
    <children>
-      <Pane prefHeight="800.0" prefWidth="1400.0">
+      <Pane prefHeight="800.0" prefWidth="1550.0">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutY="25.0" prefHeight="100.0" prefWidth="1400.0" text="Richesse du Monde" textAlignment="CENTER" textFill="#06b3e8">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutY="25.0" prefHeight="100.0" prefWidth="1550.0" text="Richesse du Monde" textAlignment="CENTER" textFill="#06b3e8">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
@@ -21,7 +21,7 @@
                   <Font name="Lucida Console" size="72.0" />
                </font>
             </Label>
-            <SplitPane dividerPositions="0.5" layoutX="50.0" layoutY="200.0" prefHeight="400.0" prefWidth="1300.0">
+            <SplitPane dividerPositions="0.5" layoutX="50.0" layoutY="200.0" prefHeight="400.0" prefWidth="1450.0">
                <items>
                   <Pane prefHeight="137.0" prefWidth="514.0">
                      <children>

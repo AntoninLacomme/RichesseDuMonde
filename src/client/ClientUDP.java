@@ -55,7 +55,6 @@ public class ClientUDP extends ServerUDP {
 		
 	}
 
-
 	public void getEmptyPlateau () {
 		DataUDP message = new DataUDP ("GET_EMPTY_PLATEAU");
 		this.sendPacket(message);
